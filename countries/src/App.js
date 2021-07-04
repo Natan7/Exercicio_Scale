@@ -12,27 +12,13 @@ export default class App extends React.Component {
 
   }
   data = [];
-  //countries = [];
-
 
 
   async componentDidMount() { 
     let url = "http://amock.io/api/fcmaia/countries";
     let response = await fetch(url);
-    let raw_data = await response.text();  
-    ///console.log(raw_data); // just for debug
-
-    // structuring raw_data
-    const search = 'name';
-    const replaceWith = '"name"';
-    const result = raw_data.split(search).join(replaceWith);
-    ///console.log(result); // just for debug
-    ////
-
-    // parse data
-    const data = JSON.parse(result);
+    const data = await response.json(); 
     ///console.log(data); // just for debug
-    ////  
 
     // ordering data (up->down)
     data.sort(function(a,b){
